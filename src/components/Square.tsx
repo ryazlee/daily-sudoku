@@ -2,22 +2,22 @@ import React, { useState } from 'react';
 import Tile, { TileViewModel } from './Tile';
 
 export interface SquareViewModel {
-    index: number
+    squareIndex: number,
+    onMouseOverTile: (square: number, tile: number) => void
 }
 
 function Square(props: SquareViewModel) {
-    const [tiles, setTiles] = useState(Array.from(Array(9).keys()).map(i => ({ value: i.toString(), id: i})))
-    console.log(tiles.length)
+    const [tiles, setTiles] = useState(Array.from(Array(9).keys()).map(i => ({ value: i.toString(), tileIndex: i, squareIndex: props.squareIndex, onMouseOverTile: props.onMouseOverTile })))
 
     const buildRow = (tiles: TileViewModel[], rowIndex: number) => {
         let rows = []
         for (let i = 3 * rowIndex; i < 3 * rowIndex + 3; i += 1) {
-            rows.push(<td style={{border: "1px solid"}}><Tile {...tiles[i]} /></td>)
+            rows.push(<td style={{ border: "1px solid" }}><Tile {...tiles[i]} /></td>)
         }
         return <tr>{rows}</tr>
     }
     return (
-        <table> 
+        <table>
             {buildRow(tiles, 0)}
             {buildRow(tiles, 1)}
             {buildRow(tiles, 2)}

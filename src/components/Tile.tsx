@@ -3,7 +3,9 @@ import React, { ChangeEvent, useState } from 'react';
 export interface TileViewModel {
   // change this to enum later
   value: string,
-  id: number
+  tileIndex: number,
+  squareIndex: number
+  onMouseOverTile: (square: number, tile: number) => void
 }
 
 function Tile(props: TileViewModel) {
@@ -21,7 +23,7 @@ function Tile(props: TileViewModel) {
   }
 
   const onMouseEnter = () => {
-    console.log("hererererere", props.id)
+    props.onMouseOverTile(props.squareIndex, props.tileIndex)
     setBgColor("orange")
   }
 
