@@ -6,7 +6,7 @@ export interface SquareViewModel {
 }
 
 function Square(props: SquareViewModel) {
-    const [tiles, setTiles] = useState([{ value: 1 }, { value: 2 }, { value: 3 }, { value: 4 }, { value: 5 }, { value: 6 }, { value: 7 }, { value: 8 }, { value: 9 }]);
+    const [tiles, setTiles] = useState(Array.from(Array(9).keys()).map(i => ({ value: i.toString(), id: i})))
     console.log(tiles.length)
 
     const buildRow = (tiles: TileViewModel[], rowIndex: number) => {

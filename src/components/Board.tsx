@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import Square, { SquareViewModel } from './Square';
-import Tile from './Tile';
 
 function Board() {
   const [squares, setSquares] = useState(Array.from(Array(9).keys()).map(i => ({ index: i })))
+  const [selectedSquare, setSelectedSquare] = useState([0, 0])
 
   const buildRow = (squares: SquareViewModel[], rowIndex: number) => {
     let rows = []
